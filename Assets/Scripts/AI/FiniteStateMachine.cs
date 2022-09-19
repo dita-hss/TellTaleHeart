@@ -23,6 +23,11 @@ public class FiniteStateMachine : MonoBehaviour
     }
 }
 
+public class HierarchicalStateMachine : MonoBehaviour
+{
+
+}
+
 
 
 public class FSMState
