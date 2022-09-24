@@ -106,8 +106,9 @@ public class Eyes : MonoBehaviour
         return ref inSight;
     }
 
+    
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         // Draws the area the eyes can see
         Gizmos.color = Color.red;
