@@ -31,11 +31,14 @@ public class Eyes : MonoBehaviour
 
     private HashSet<GameObject> inSight = new HashSet<GameObject>();
 
+    private Collider myCollider;
+
 
 
     private void Start()
     {
         currentCheckForTargetTime = checkForTargetTime;
+        myCollider = GetComponent<Collider>();
     }
 
 
@@ -56,11 +59,19 @@ public class Eyes : MonoBehaviour
     /// <summary>
     /// Cycles through targets and sees if their in range 
     /// </summary>
-    private void CheckTargets()
+    public void CheckTargets()
     {
 
         // Clear targets that are in sight
         inSight.Clear();
+
+        bool prevColliderEnabled = true;
+        if (myCollider != null)
+        {
+            // Disable this game objects collider (so the raycast doesn't collide with itself) 
+            prevColliderEnabled = myCollider.enabled;
+            myCollider.enabled = false;
+        }
 
         // Go through each target
         foreach (GameObject target in targets)
@@ -71,11 +82,18 @@ public class Eyes : MonoBehaviour
             Physics.Raycast(transform.position, direction, out RaycastHit hit, viewRange, hitLayerMask, QueryTriggerInteraction.Ignore);
 
             // If it hits, send an event for when a target is seen
-            if (hit.collider.gameObject.Equals(target))
+            if (hit.collider != null && hit.collider.gameObject.Equals(target))
             {
                 inSight.Add(target); 
                 onSeeTarget.Invoke(target);
             }
+        }
+        print("Checking targets");
+
+        if (myCollider != null)
+        {
+            // Set collider enabled value to old enabled value (in case it was disabled before)
+            myCollider.enabled = prevColliderEnabled;
         }
     }
 
@@ -88,5 +106,12 @@ public class Eyes : MonoBehaviour
         return ref inSight;
     }
 
+
+    private void OnDrawGizmos()
+    {
+        // Draws the area the eyes can see
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, viewRange);
+    }
 
 }

@@ -506,6 +506,9 @@ GameObject:
   - component: {fileID: 1701398765}
   - component: {fileID: 1701398764}
   - component: {fileID: 1701398763}
+  - component: {fileID: 1701398768}
+  - component: {fileID: 1701398770}
+  - component: {fileID: 1701398769}
   - component: {fileID: 1701398762}
   - component: {fileID: 1701398767}
   - component: {fileID: 1701398766}
@@ -587,7 +590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701398761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.132508, y: -0.96, z: 4.54}
+  m_LocalPosition: {x: 3.132508, y: -0.96, z: -1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,3 +623,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
+--- !u!114 &1701398768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701398761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840527a92d6abc048806c9e688ee4767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSeeTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1701398769}
+        m_TargetAssemblyTypeName: TextOutputTester, Assembly-CSharp
+        m_MethodName: PrintTest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  viewRange: 20
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  targets:
+  - {fileID: 282311536}
+  checkForTargetTime: 0.3
+--- !u!114 &1701398769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701398761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891c749c3b5efb440b4465438676049a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toPrint: Vision Hit Object
+--- !u!114 &1701398770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701398761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdca593fff9dfa418117b6f8edbe254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTest: {fileID: 1701398768}
