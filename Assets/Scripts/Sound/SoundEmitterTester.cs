@@ -19,7 +19,7 @@ public class SoundEmitterTester : MonoBehaviour
 
 // https://learn.unity.com/tutorial/editor-scripting#
 [CustomEditor(typeof(SoundEmitterTester))]
-public class SoundEmitterTestorEditor : Editor
+public class SoundEmitterTesterEditor : Editor
 {
     public override void OnInspectorGUI()
     {
