@@ -92,8 +92,14 @@ public class Eyes : MonoBehaviour
                 Physics.Raycast(transform.position, direction, out RaycastHit hit, viewRange, hitLayerMask, QueryTriggerInteraction.Ignore);
                 print("In angle " + hit.collider.gameObject.name);
 
+                GameObject obTarg = hit.collider.gameObject;
+
+                if (obTarg.transform.parent.gameObject.Equals(target)) {
+                    obTarg = obTarg.transform.parent.gameObject;
+                }
+
                 // If it hits, send an event for when a target is seen
-                if (hit.collider != null && (hit.collider.gameObject.Equals(target) || (hit.collider.gameObject.transform.parent.gameObject.Equals(target))))
+                if (hit.collider != null && obTarg.Equals(target))
                 {
                     print("collider");
                     inSight.Add(target);
