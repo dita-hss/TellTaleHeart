@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
 
 
 /// <summary>
@@ -17,14 +18,16 @@ public class Eyes : MonoBehaviour
     [SerializeField, Tooltip("Range to see targets")] 
     private float viewRange = 20.0f;
 
+    [SerializeField, Tooltip("Angle to see targets")]
+    private float viewAngle = 60.0f; 
+
     [SerializeField, Tooltip("Collision masks to hit for raycast")] 
     private LayerMask hitLayerMask;
 
-    [SerializeField, Tooltip("Current objects to see if they're in range")] 
+    [SerializeField, Tooltip("Current objects to check if in sight")] 
     private List<GameObject> targets = new List<GameObject>();
 
-
-    [SerializeField, Tooltip("How to wait before checking for targets again")]
+    [SerializeField, Tooltip("How long to wait before checking for targets again")]
     private float checkForTargetTime = 0.3f;
     private float currentCheckForTargetTime;
 
@@ -59,6 +62,7 @@ public class Eyes : MonoBehaviour
     /// <summary>
     /// Cycles through targets and sees if their in range 
     /// </summary>
+    /// Thx https://www.youtube.com/watch?v=rQG9aUWarwE for some help
     public void CheckTargets()
     {
 
@@ -79,13 +83,22 @@ public class Eyes : MonoBehaviour
 
             // Cast a ray in the direction of the target for the distance of the view range
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            Physics.Raycast(transform.position, direction, out RaycastHit hit, viewRange, hitLayerMask, QueryTriggerInteraction.Ignore);
 
-            // If it hits, send an event for when a target is seen
-            if (hit.collider != null && hit.collider.gameObject.Equals(target))
+            float angle = Vector3.Angle(transform.forward, direction);
+
+            if (angle < viewAngle / 2)
             {
-                inSight.Add(target); 
-                onSeeTarget.Invoke(target);
+
+                Physics.Raycast(transform.position, direction, out RaycastHit hit, viewRange, hitLayerMask, QueryTriggerInteraction.Ignore);
+                print("In angle " + hit.collider.gameObject.name);
+
+                // If it hits, send an event for when a target is seen
+                if (hit.collider != null && (hit.collider.gameObject.Equals(target) || (hit.collider.gameObject.transform.parent.gameObject.Equals(target))))
+                {
+                    print("collider");
+                    inSight.Add(target);
+                    onSeeTarget.Invoke(target);
+                }
             }
         }
         print("Checking targets");
@@ -112,7 +125,24 @@ public class Eyes : MonoBehaviour
     {
         // Draws the area the eyes can see
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, viewRange);
+        //Gizmos.DrawWireSphere(transform.position, viewRange);
+
+        Vector3 pos = transform.position;
+        Vector3 right = new Vector3(Mathf.Sin(Mathf.Deg2Rad * viewAngle / 2), 0, 0);
+        Vector3 up = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * viewAngle / 2), 0);
+
+        Gizmos.DrawLine(pos, pos + transform.forward * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward + right + up).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward + right - up).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward - right + up).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward - right - up).normalized * viewRange);
+
+        Gizmos.DrawLine(pos, pos + (transform.forward + up).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward - up).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward + right).normalized * viewRange);
+        Gizmos.DrawLine(pos, pos + (transform.forward - right).normalized * viewRange);
     }
+
+
 
 }
