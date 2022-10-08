@@ -6,20 +6,26 @@ using UnityEngine.AI;
 /// Basic Patrolling AI that responds to sound and chases the player (or other specified targets)
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent), typeof(Eyes), typeof(SoundListener))]
+[RequireComponent(typeof(Attack))]
 public class BasicEnemyAI : MonoBehaviour
 {
 
 
     private GameObject curTarget;
 
-    [SerializeField] private float timeBeforeAbandonSound = 2.0f; 
+    [SerializeField] private float timeBeforeAbandonSound = 2.0f;
+    [SerializeField] private float attackStartTime = 0.5f;
+    [SerializeField] private float postAttackTime = 0.25f;
+
+    private bool attacking = false; 
 
 
     // Necessary AI components
     private Eyes eyes;
     private SoundListener ears;
     private NavMeshAgent navMeshAgent;
-    private Patrol patrol; 
+    private Patrol patrol;
+    private Attack attack; 
 
 
 
@@ -29,6 +35,7 @@ public class BasicEnemyAI : MonoBehaviour
         ears = GetComponent<SoundListener>();
         patrol = GetComponent<Patrol>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        attack = GetComponent<Attack>();
     }
 
     private States curState = States.PATROL;
@@ -70,7 +77,15 @@ public class BasicEnemyAI : MonoBehaviour
         }
         else if (curState.Equals(States.ATTACK_TARGET))
         {
-            patrol.OverrideDestination(curTarget.transform.position);
+            if (!attacking)
+            {
+                patrol.OverrideDestination(curTarget.transform.position);
+
+                if (attack.ObjectInRange(curTarget))
+                {
+                    StartCoroutine(AttackTarget());
+                }
+            }
         }
 
 
@@ -85,6 +100,17 @@ public class BasicEnemyAI : MonoBehaviour
         yield return null; 
     }
 
+
+    IEnumerator AttackTarget()
+    {
+        attacking = true; 
+        patrol.Stop();
+        yield return new WaitForSeconds(attackStartTime);
+        attack.TryAttack(curTarget);
+        yield return new WaitForSeconds(postAttackTime);
+        attacking = false;
+        yield return null;
+    }
     
 
 

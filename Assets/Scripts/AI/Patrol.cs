@@ -27,14 +27,22 @@ public class Patrol : MonoBehaviour
         curDestination = patrolPoints[curPatrolPoint].position;
     }
 
+    public void Stop()
+    {
+        onPatrol = false; 
+        navMeshAgent.isStopped = true;
+    }
+
     public void PatrolStep()
     {
         // Set the destination back to the current patrol point if it went off track
         if (!onPatrol)
         {
+            onPatrol = true;
+            navMeshAgent.isStopped = false;
+
             navMeshAgent.SetDestination(patrolPoints[curPatrolPoint].position);
             curDestination = patrolPoints[curPatrolPoint].position;
-            onPatrol = true; 
         }
 
         // Set the destination back if the nav mesh agent gets messed up
@@ -59,7 +67,8 @@ public class Patrol : MonoBehaviour
     /// <param name="newDest">New position to go to</param>
     public void OverrideDestination(Vector3 newDest)
     {
-        onPatrol = false; 
+        onPatrol = false;
+        navMeshAgent.isStopped = false; 
         navMeshAgent.SetDestination(newDest);
         curDestination = newDest;
 
