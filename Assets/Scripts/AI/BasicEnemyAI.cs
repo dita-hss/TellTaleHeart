@@ -57,11 +57,15 @@ public class BasicEnemyAI : MonoBehaviour
             {
                 navMeshAgent.SetDestination(curDestination.position);
             }
+
             
-            if (Vector3.Distance(curDestination.position, transform.position) < .25f)
+            
+            if (ReachedDestination())
             {
+                print("Destination reached");
                 curPatrolPoint = (curPatrolPoint + 1) % patrolPoints.Length;
                 curDestination = patrolPoints[curPatrolPoint];
+                navMeshAgent.SetDestination(curDestination.position);
             }
 
         }
@@ -81,8 +85,15 @@ public class BasicEnemyAI : MonoBehaviour
     }
 
 
+    public bool ReachedDestination()
+    {
+        return (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f));
+    }
+
+
     private void StartAttackTarget(GameObject newTarget)
     {
+        print("Attack target start");
         curState = States.ATTACK_TARGET;
         curTarget = newTarget;
         navMeshAgent.SetDestination(newTarget.transform.position);
