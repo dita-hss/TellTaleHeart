@@ -6,9 +6,7 @@ using UnityEngine.AI;
 public class BasicEnemyAI : MonoBehaviour
 {
 
-    [SerializeField] private Transform[] patrolPoints;
-    private int curPatrolPoint = 0;
-    private Transform curDestination = null;
+
     private GameObject curTarget;
 
     [SerializeField] private float timeBeforeAbandonSound = 2.0f; 
@@ -18,6 +16,7 @@ public class BasicEnemyAI : MonoBehaviour
     private Eyes eyes;
     private SoundListener ears;
     private NavMeshAgent navMeshAgent;
+    private Patrol patrol; 
 
 
 
@@ -25,6 +24,7 @@ public class BasicEnemyAI : MonoBehaviour
     {
         eyes = GetComponent<Eyes>();
         ears = GetComponent<SoundListener>();
+        patrol = GetComponent<Patrol>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -44,7 +44,7 @@ public class BasicEnemyAI : MonoBehaviour
     {
         eyes.onSeeTarget.AddListener(StartAttackTarget);
         ears.AddOnSoundHeardAction(StartHearSound);
-        curDestination = patrolPoints[curPatrolPoint];
+        
     }
 
     // Update is called once per frame
@@ -53,31 +53,16 @@ public class BasicEnemyAI : MonoBehaviour
         
         if (curState.Equals(States.PATROL))
         {
-            if (!navMeshAgent.destination.Equals(curDestination.position))
-            {
-                navMeshAgent.SetDestination(curDestination.position);
-            }
-
-            
-            
-            if (ReachedDestination())
-            {
-                print("Destination reached");
-                curPatrolPoint = (curPatrolPoint + 1) % patrolPoints.Length;
-                curDestination = patrolPoints[curPatrolPoint];
-                navMeshAgent.SetDestination(curDestination.position);
-            }
+            patrol.PatrolStep();
 
         }
         else if (curState.Equals(States.HEARSOUND))
         {
-            navMeshAgent.SetDestination(curTarget.transform.position);
-            curDestination = curTarget.transform;
+            patrol.OverrideDestination(curTarget.transform.position);
         }
         else if (curState.Equals(States.ATTACK_TARGET))
         {
-            navMeshAgent.SetDestination(curTarget.transform.position);
-            curDestination = curTarget.transform;
+            patrol.OverrideDestination(curTarget.transform.position);
         }
 
 
@@ -85,10 +70,7 @@ public class BasicEnemyAI : MonoBehaviour
     }
 
 
-    public bool ReachedDestination()
-    {
-        return (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f));
-    }
+    
 
 
     private void StartAttackTarget(GameObject newTarget)
@@ -96,22 +78,19 @@ public class BasicEnemyAI : MonoBehaviour
         print("Attack target start");
         curState = States.ATTACK_TARGET;
         curTarget = newTarget;
-        navMeshAgent.SetDestination(newTarget.transform.position);
-        curDestination = newTarget.transform;
+        patrol.OverrideDestination(newTarget.transform.position);
     }
 
-    private void StartHearSound(GameObject soundSource)
+    private void StartHearSound(Vector3 soundSource)
     {
         curState = States.HEARSOUND;
-        curTarget = soundSource;
-        navMeshAgent.SetDestination(soundSource.transform.position);
-        curDestination = soundSource.transform;
+        // curTarget = soundSource;
+        patrol.OverrideDestination(soundSource);
     }
 
     private void StartPatrol(GameObject soundSource)
     {
         curState = States.PATROL;
-        navMeshAgent.SetDestination(patrolPoints[curPatrolPoint].position);
     }
 
 
