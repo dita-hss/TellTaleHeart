@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
+/// <summary>
+/// Patrol and movement behavior
+/// Basically a patrol wrapper class for Unity's Nav Mesh Agents
+/// Run PatrolStep() in update from any class for object to move between patrol points
+/// OverrideDestination() for it to move where ever else 
+/// </summary>
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class Patrol : MonoBehaviour
-{//GenericPropertyJSON:{"name":"patrolPoints","type":-1,"arraySize":2,"arrayType":"PPtr<$Transform>","children":[{"name":"Array","type":-1,"arraySize":2,"arrayType":"PPtr<$Transform>","children":[{"name":"size","type":12,"val":2},{"name":"data","type":5,"val":"UnityEditor.ObjectWrapperJSON:{\"guid\":\"\",\"localId\":0,\"type\":0,\"instanceID\":29056}"},{"name":"data","type":5,"val":"UnityEditor.ObjectWrapperJSON:{\"guid\":\"\",\"localId\":0,\"type\":0,\"instanceID\":29100}"}]}]}
-
+{
     [SerializeField] private Transform[] patrolPoints;
 
     private int curPatrolPoint = 0;
@@ -23,7 +29,7 @@ public class Patrol : MonoBehaviour
 
     public void PatrolStep()
     {
-
+        // Set the destination back to the current patrol point if it went off track
         if (!onPatrol)
         {
             navMeshAgent.SetDestination(patrolPoints[curPatrolPoint].position);
@@ -31,12 +37,13 @@ public class Patrol : MonoBehaviour
             onPatrol = true; 
         }
 
-
+        // Set the destination back if the nav mesh agent gets messed up
         if (!navMeshAgent.destination.Equals(curDestination))
         {
             navMeshAgent.SetDestination(curDestination);
         }
 
+        // Once destination is reached, go to the next patrol point
         if (ReachedDestination())
         {
             print("Destination reached");
@@ -46,6 +53,10 @@ public class Patrol : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Override the patrol points
+    /// </summary>
+    /// <param name="newDest">New position to go to</param>
     public void OverrideDestination(Vector3 newDest)
     {
         onPatrol = false; 
@@ -54,6 +65,11 @@ public class Patrol : MonoBehaviour
 
     }
 
+    // Thx https://answers.unity.com/questions/324589/how-can-i-tell-when-a-navmesh-has-reached-its-dest.html
+    /// <summary>
+    /// Checks if NavMeshAgent reached the destination
+    /// </summary>
+    /// <returns>Boolean, if true, its reached the destination, false if not</returns>
     public bool ReachedDestination()
     {
         return (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f));

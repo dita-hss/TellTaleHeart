@@ -1826,22 +1826,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7187260858584135557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2bb85d4babd3f42a9bdd05afbebbc4, type: 3}
+  m_Script: {fileID: 11500000, guid: ce4a82096fc334e488526e3f9571d1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7187260858584135566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187260858584135557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a440f32cbd6f59644a58ed4e6561892d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 20
+  throwObjectPrefab: {fileID: 7936758298352341363, guid: 7744530c6d904e848ac9e5d7b0bb8f9c,
+    type: 3}
+  camera: {fileID: 0}
+  relativeForce: {x: 7, y: 0, z: 4}
 --- !u!1 &8076392093991593007
 GameObject:
   m_ObjectHideFlags: 0

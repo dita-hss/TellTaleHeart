@@ -2,7 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-
+/// <summary>
+/// Basic Patrolling AI that responds to sound and chases the player (or other specified targets)
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent), typeof(Eyes), typeof(SoundListener))]
 public class BasicEnemyAI : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] private float timeBeforeAbandonSound = 2.0f; 
 
 
-
+    // Necessary AI components
     private Eyes eyes;
     private SoundListener ears;
     private NavMeshAgent navMeshAgent;
