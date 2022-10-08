@@ -738,7 +738,7 @@ MonoBehaviour:
   onSeeTarget:
     m_PersistentCalls:
       m_Calls: []
-  viewRange: 3.69
+  viewRange: 15
   viewAngle: 60
   hitLayerMask:
     serializedVersion: 2
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   throwObjectPrefab: {fileID: 7936758298352341363, guid: 7744530c6d904e848ac9e5d7b0bb8f9c,
     type: 3}
   camera: {fileID: 0}
-  relativeForce: {x: 7, y: 0, z: 4}
+  forwardForce: 7
 --- !u!1 &8076392093991593007
 GameObject:
   m_ObjectHideFlags: 0
