@@ -112,9 +112,12 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
+			if (Time.timeScale != 0)
+			{
+				JumpAndGravity();
+				GroundedCheck();
+				Move();
+			}
 		}
 
 		private void LateUpdate()

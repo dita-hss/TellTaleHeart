@@ -21,7 +21,7 @@ public class CreateThrowableOnClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Time.timeScale != 0 && Mouse.current.leftButton.wasPressedThisFrame)
         {
             CreateThrowable();
         }
