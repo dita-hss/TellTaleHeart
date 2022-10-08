@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 1290833449}
   - component: {fileID: 1290833454}
   - component: {fileID: 1290833453}
+  - component: {fileID: 1290833457}
   - component: {fileID: 1290833455}
   - component: {fileID: 1290833456}
   m_Layer: 0
@@ -737,7 +738,7 @@ MonoBehaviour:
   onSeeTarget:
     m_PersistentCalls:
       m_Calls: []
-  viewRange: 10
+  viewRange: 3.69
   viewAngle: 60
   hitLayerMask:
     serializedVersion: 2
@@ -757,9 +758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd940dceb0142744aa2801171c66f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 1479901754}
-  - {fileID: 2059389940}
   timeBeforeAbandonSound: 2
 --- !u!195 &1290833456
 NavMeshAgent:
@@ -783,6 +781,21 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
+--- !u!114 &1290833457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290833448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0090dca3373fd9049a9c01bd649c1764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolPoints:
+  - {fileID: 1479901754}
+  - {fileID: 2059389940}
 --- !u!1 &1479901753
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class Patrol : MonoBehaviour
 {//GenericPropertyJSON:{"name":"patrolPoints","type":-1,"arraySize":2,"arrayType":"PPtr<$Transform>","children":[{"name":"Array","type":-1,"arraySize":2,"arrayType":"PPtr<$Transform>","children":[{"name":"size","type":12,"val":2},{"name":"data","type":5,"val":"UnityEditor.ObjectWrapperJSON:{\"guid\":\"\",\"localId\":0,\"type\":0,\"instanceID\":29056}"},{"name":"data","type":5,"val":"UnityEditor.ObjectWrapperJSON:{\"guid\":\"\",\"localId\":0,\"type\":0,\"instanceID\":29100}"}]}]}
 
     [SerializeField] private Transform[] patrolPoints;
+
     private int curPatrolPoint = 0;
     private Vector3 curDestination = Vector3.zero;
     private bool onPatrol = true; 
-
-
-    NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
 
     private void Start()
     {

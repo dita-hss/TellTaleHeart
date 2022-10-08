@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -58,7 +59,12 @@ public class BasicEnemyAI : MonoBehaviour
         }
         else if (curState.Equals(States.HEARSOUND))
         {
-            patrol.OverrideDestination(curTarget.transform.position);
+            //patrol.OverrideDestination(curTarget.transform.position);
+
+            if (patrol.ReachedDestination())
+            {
+                StartCoroutine(WaitOnHear());
+            }
         }
         else if (curState.Equals(States.ATTACK_TARGET))
         {
@@ -69,6 +75,13 @@ public class BasicEnemyAI : MonoBehaviour
 
     }
 
+    
+    IEnumerator WaitOnHear()
+    {
+        yield return new WaitForSeconds(timeBeforeAbandonSound);
+        StartPatrol();
+        yield return null; 
+    }
 
     
 
@@ -88,7 +101,7 @@ public class BasicEnemyAI : MonoBehaviour
         patrol.OverrideDestination(soundSource);
     }
 
-    private void StartPatrol(GameObject soundSource)
+    private void StartPatrol()
     {
         curState = States.PATROL;
     }
