@@ -124,14 +124,20 @@ public class BasicEnemyAI : MonoBehaviour
 
     private void StartHearSound(Vector3 soundSource)
     {
-        curState = States.HEARSOUND;
-        // curTarget = soundSource;
-        patrol.OverrideDestination(soundSource);
+        if (curState != States.ATTACK_TARGET)
+        {
+            curState = States.HEARSOUND;
+            // curTarget = soundSource;
+            patrol.OverrideDestination(soundSource);
+        }
     }
 
     private void StartPatrol()
     {
-        curState = States.PATROL;
+        if (curState != States.ATTACK_TARGET)
+        {
+            curState = States.PATROL;
+        }
     }
 
 
