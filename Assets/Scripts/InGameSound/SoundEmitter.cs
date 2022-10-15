@@ -28,7 +28,7 @@ public class SoundEmitter : MonoBehaviour
 
             // If what we hit has a soundlistener (which it should), then make it run its HeardSound event
             SoundListener hitListener = hit.gameObject.GetComponent<SoundListener>();
-            hitListener?.HeardSound(gameObject);
+            hitListener?.HeardSound(transform.position);
 
         }
     }

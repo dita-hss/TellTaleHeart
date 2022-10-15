@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class SoundListener : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<GameObject> E_OnSoundHeard = new UnityEvent<GameObject>();
+    [SerializeField] private UnityEvent<Vector3> E_OnSoundHeard = new UnityEvent<Vector3>();
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class SoundListener : MonoBehaviour
     /// Adds an action to be done when a sound is heard
     /// </summary>
     /// <param name="action">Action to add (must have a GameObject as the paramter, representing the object that emitted the sound)</param>
-    public void AddOnSoundHeardAction(UnityAction<GameObject> action)
+    public void AddOnSoundHeardAction(UnityAction<Vector3> action)
     {
         E_OnSoundHeard.AddListener(action);
     }
@@ -29,7 +29,7 @@ public class SoundListener : MonoBehaviour
     /// Runs an event that runs all the OnSoundHeard actions
     /// </summary>
     /// <param name="from">Represents the GameObject the sound was heard from</param>
-    public void HeardSound(GameObject from)
+    public void HeardSound(Vector3 from)
     {
         E_OnSoundHeard.Invoke(from);
     }
