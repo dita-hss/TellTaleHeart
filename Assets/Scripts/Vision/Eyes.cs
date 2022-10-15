@@ -57,6 +57,16 @@ public class Eyes : MonoBehaviour
         }
     }
 
+    public void AddTarget(GameObject targ)
+    {
+        targets.Add(targ);
+    }
+
+    public void RemoveTarget(GameObject targ)
+    {
+        targets.Remove(targ);
+    }
+
 
 
     /// <summary>

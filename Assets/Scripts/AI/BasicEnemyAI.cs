@@ -36,6 +36,9 @@ public class BasicEnemyAI : MonoBehaviour
         patrol = GetComponent<Patrol>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
+
+
+        eyes.AddTarget(GameObject.FindGameObjectWithTag("Player"));
     }
 
     private States curState = States.PATROL;
