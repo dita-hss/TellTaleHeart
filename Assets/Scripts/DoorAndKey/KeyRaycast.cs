@@ -26,14 +26,21 @@ namespace KeySystem
 
         private string interactableTag = "InteractiveObject";
 
+        private Camera _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
+
 
         public void Update()
         {
             RaycastHit hit;
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Vector3 fwd = _camera.transform.forward;//transform.TransformDirection(Vector3.forward);
 
 
-            int mask = 1 << LayerMask.NameToLayer(excluseLayerName) | layerMaskInteract.value;
+            int mask = 1 << layerMaskInteract.value; //LayerMask.NameToLayer(excluseLayerName) | layerMaskInteract.value;
 
             if (Physics.Raycast(transform.position, fwd, out hit, rayLength, mask))
             {
