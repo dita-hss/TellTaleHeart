@@ -12,21 +12,26 @@ namespace KeySystem
 
         private bool doorOpen = false;
 
+        [SerializeField] private string keyId = "redKey";
+
         [Header("Animation Names")]
         [SerializeField] private string openAnimationName = "DoorOpen";
         [SerializeField] private string closeAnimationName = "DoorClose";
 
         [SerializeField] private int timeToShowUI = 1;
         [SerializeField] private GameObject showDoorLockedUI = null;
-        [SerializeField] private KeyInventory _keyInventory = null;
+        
         [SerializeField] private int waitTimer = 1;
         [SerializeField] private bool pauseInteraction = false;
+
+        private KeyInventory _keyInventory = null;
 
 
 
         private void Awake()
         {
             doorAnim = gameObject.GetComponent<Animator>();
+            _keyInventory = GameObject.FindObjectOfType<KeyInventory>();
         }
 
         private IEnumerator PauseDoorInteraction()
@@ -38,7 +43,7 @@ namespace KeySystem
 
         public void PlayAnimation()
         {
-            if (_keyInventory.hasRedKey)
+            if (_keyInventory.HasKey(keyId))
             {
                 if (!doorOpen && !pauseInteraction)
                 {
@@ -61,9 +66,9 @@ namespace KeySystem
 
         IEnumerator ShowDoorLocked()
         {
-            showDoorLockedUI.SetActive(true);
+            showDoorLockedUI?.SetActive(true);
             yield return new WaitForSeconds(timeToShowUI);
-            showDoorLockedUI.SetActive(false);
+            showDoorLockedUI?.SetActive(false);
 
         }
     }
