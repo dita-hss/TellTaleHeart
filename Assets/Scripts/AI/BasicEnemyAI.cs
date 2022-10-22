@@ -16,6 +16,7 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] private float timeBeforeAbandonSound = 2.0f;
     [SerializeField] private float attackStartTime = 0.5f;
     [SerializeField] private float postAttackTime = 0.25f;
+    [SerializeField] private float checkSeeTargetTime = 1.5f; 
 
     private bool attacking = false; 
 
@@ -23,7 +24,6 @@ public class BasicEnemyAI : MonoBehaviour
     // Necessary AI components
     private Eyes eyes;
     private SoundListener ears;
-    private NavMeshAgent navMeshAgent;
     private Patrol patrol;
     private Attack attack; 
 
@@ -34,7 +34,6 @@ public class BasicEnemyAI : MonoBehaviour
         eyes = GetComponent<Eyes>();
         ears = GetComponent<SoundListener>();
         patrol = GetComponent<Patrol>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
 
 
@@ -55,7 +54,7 @@ public class BasicEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eyes.onSeeTarget.AddListener(StartAttackTarget);
+        eyes.onSeeTarget.AddListener(RunWaitToSeeTarget);
         ears.AddOnSoundHeardAction(StartHearSound);
         
     }
@@ -95,6 +94,8 @@ public class BasicEnemyAI : MonoBehaviour
 
     }
 
+
+
     
     IEnumerator WaitOnHear()
     {
@@ -114,9 +115,26 @@ public class BasicEnemyAI : MonoBehaviour
         attacking = false;
         yield return null;
     }
-    
 
 
+
+    private void RunWaitToSeeTarget(GameObject newTarget)
+    {
+        StartCoroutine(WaitBeforeAttackTarget(newTarget));
+    }
+
+    // Wait a second before going full attack mode
+    IEnumerator WaitBeforeAttackTarget(GameObject newTarget)
+    {
+        yield return new WaitForSeconds(checkSeeTargetTime);
+        if (eyes.GetSeenTargets().Contains(newTarget))
+        {
+            StartAttackTarget(newTarget);
+        } 
+        yield return null;
+    }
+
+    // Attack mode!
     private void StartAttackTarget(GameObject newTarget)
     {
         print("Attack target start");
