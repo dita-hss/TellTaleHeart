@@ -16,7 +16,10 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] private float timeBeforeAbandonSound = 2.0f;
     [SerializeField] private float attackStartTime = 0.5f;
     [SerializeField] private float postAttackTime = 0.25f;
-    [SerializeField] private float checkSeeTargetTime = 1.5f; 
+    [SerializeField] private float checkSeeTargetTime = 1.5f;
+    [SerializeField] private float timeBeforeAbandonTarget = 5.0f;
+
+    private float _lastTimeSeenTarget = 0.0f;
 
     private bool attacking = false; 
 
@@ -79,6 +82,21 @@ public class BasicEnemyAI : MonoBehaviour
         }
         else if (curState.Equals(States.ATTACK_TARGET))
         {
+
+            if (eyes.GetSeenTargets().Contains(curTarget))
+            {
+                _lastTimeSeenTarget = 0.0f; 
+            }
+            else
+            {
+                _lastTimeSeenTarget += Time.deltaTime;
+                if (_lastTimeSeenTarget > timeBeforeAbandonTarget)
+                {
+                    print("abandoning target");
+                    StartPatrol();
+                }
+            }
+
             if (!attacking)
             {
                 patrol.OverrideDestination(curTarget.transform.position);
@@ -141,6 +159,7 @@ public class BasicEnemyAI : MonoBehaviour
         curState = States.ATTACK_TARGET;
         curTarget = newTarget;
         patrol.OverrideDestination(newTarget.transform.position);
+        _lastTimeSeenTarget = 0.0f; 
     }
 
     private void StartHearSound(Vector3 soundSource)
