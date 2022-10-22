@@ -26,6 +26,18 @@ public class CameraObstacle : MonoBehaviour
         cameraVision.onSeeTarget.AddListener(OnSeenTarget);
     }
 
+    /*private void OnValidate()
+    {
+        Light light = GetComponentInChildren<Light>();
+        Eyes cameraVis = gameObject.GetComponent<Eyes>();
+
+        if (light != null && cameraVis != null)
+        {
+            light.innerSpotAngle = cameraVis.ViewAngle;
+            light.spotAngle = cameraVis.ViewAngle + 5.0f;
+        }
+    }*/
+
 
     private void OnSeenTarget(GameObject seen)
     {
@@ -35,6 +47,7 @@ public class CameraObstacle : MonoBehaviour
             curSeen = seen;
             if (!alarmPlaying)
             {
+                print("start alarm");
                 alarmPlaying = true; 
                 StartCoroutine(RepeatedAlarm());
             }
@@ -57,7 +70,8 @@ public class CameraObstacle : MonoBehaviour
             yield return new WaitForSeconds(alarmPauseTime);
         }
         alarmPlaying = false; 
-        curSeen = null; 
+        curSeen = null;
+        yield return null; 
     }
 
 

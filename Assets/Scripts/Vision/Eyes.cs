@@ -13,13 +13,18 @@ using UnityEditor;
 public class Eyes : MonoBehaviour
 {
 
+
     public UnityEvent<GameObject> onSeeTarget = new UnityEvent<GameObject>();
 
     [SerializeField, Tooltip("Range to see targets")] 
     private float viewRange = 20.0f;
 
     [SerializeField, Tooltip("Angle to see targets")]
-    private float viewAngle = 60.0f; 
+    private float viewAngle = 60.0f;
+
+    public float ViewRange { get { return viewRange; } }
+    public float ViewAngle { get { return viewAngle; } }
+
 
     [SerializeField, Tooltip("Collision masks to hit for raycast")] 
     private LayerMask hitLayerMask;
@@ -103,7 +108,7 @@ public class Eyes : MonoBehaviour
 
                 if (hit.collider != null)
                 {
-                    print("In angle " + hit.collider.gameObject.name);
+                    //print("In angle " + hit.collider.gameObject.name);
 
                     GameObject obTarg = hit.collider.gameObject;
 

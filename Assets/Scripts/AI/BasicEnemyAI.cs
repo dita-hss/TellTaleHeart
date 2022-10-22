@@ -145,10 +145,12 @@ public class BasicEnemyAI : MonoBehaviour
 
     private void StartHearSound(Vector3 soundSource)
     {
-        if (curState != States.ATTACK_TARGET)
+        print("heard sound");
+        if (!curState.Equals(States.ATTACK_TARGET))
         {
             curState = States.HEARSOUND;
             // curTarget = soundSource;
+            print("AI HEARD SOUND");
             patrol.OverrideDestination(soundSource);
         }
     }

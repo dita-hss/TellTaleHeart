@@ -9,9 +9,14 @@ public class SoundListener : MonoBehaviour
 
     private void Start()
     {
+        print(gameObject.layer);
         // https://answers.unity.com/questions/8715/how-do-i-use-layermasks.html
         // Add the sound listener layer to this object's layer, gives the object 2 layers, their original and the soundlistener layer
-        gameObject.layer = gameObject.layer | LayerMask.NameToLayer("SoundListener");
+        int layer = gameObject.layer;
+        int soundLayer = LayerMask.NameToLayer("SoundListener");
+
+        gameObject.layer = layer | soundLayer;
+        print(gameObject.layer);
     }
 
 

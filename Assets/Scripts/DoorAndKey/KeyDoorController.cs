@@ -76,9 +76,12 @@ namespace KeySystem
 
         IEnumerator ShowDoorLocked()
         {
-            showDoorLockedUI?.SetActive(true);
-            yield return new WaitForSeconds(timeToShowUI);
-            showDoorLockedUI?.SetActive(false);
+            if (showDoorLockedUI != null)
+            {
+                showDoorLockedUI?.SetActive(true);
+                yield return new WaitForSeconds(timeToShowUI);
+                showDoorLockedUI?.SetActive(false);
+            }
 
         }
     }
