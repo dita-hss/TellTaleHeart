@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KeySystem
 {
-    public class KeyDoorController : MonoBehaviour
+    public class KeyDoorController : MonoBehaviour, Interactable
     {
 
         private Animator doorAnim;
@@ -26,6 +26,12 @@ namespace KeySystem
 
         private KeyInventory _keyInventory = null;
 
+        public void Interact(KeyInventory inv)
+        {
+            PlayAnimation();
+        }
+
+
 
 
         private void Awake()
@@ -39,12 +45,16 @@ namespace KeySystem
             pauseInteraction = true;
             yield return new WaitForSeconds(waitTimer);
             pauseInteraction = false;
+            // Deleting object for now
+            Destroy(gameObject);
         }
 
         public void PlayAnimation()
         {
             if (_keyInventory.HasKey(keyId))
             {
+
+                
                 if (!doorOpen && !pauseInteraction)
                 {
                     doorAnim.Play(openAnimationName, 0, 0.0f);
