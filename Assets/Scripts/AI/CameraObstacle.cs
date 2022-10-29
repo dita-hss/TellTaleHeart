@@ -7,7 +7,10 @@ public class CameraObstacle : MonoBehaviour
 {
     [SerializeField] private string targetTag = "Player";
     [SerializeField] private float alarmPauseTime = 0.8f;
-    [SerializeField] private float stopAfterNotSeenTime = 1.5f; 
+    [SerializeField] private float stopAfterNotSeenTime = 1.5f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSO onSeePlayer;
 
 
 
@@ -39,6 +42,8 @@ public class CameraObstacle : MonoBehaviour
     }*/
 
 
+
+
     private void OnSeenTarget(GameObject seen)
     {
         if (seen.tag.Equals(targetTag))
@@ -58,6 +63,7 @@ public class CameraObstacle : MonoBehaviour
     private void PlaySingleAlarm()
     {
         alarmEmitter.EmitSound();
+        SoundManager.Audio?.PlaySFXSound(onSeePlayer, Vector3.zero, transform);
         print("Sound played");
     }
 

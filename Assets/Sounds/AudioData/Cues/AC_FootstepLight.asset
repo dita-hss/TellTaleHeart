@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d36959ca5eab0b4fafa827af6ab1834, type: 3}
+  m_Name: AC_FootstepLight
+  m_EditorClassIdentifier: 
+  looping: 0
+  _audioClipGroups:
+  - sequenceMode: 0
+    audioClips:
+    - {fileID: 8300000, guid: 0874e482b773b784783ff6d52e2b733b, type: 3}
+    - {fileID: 8300000, guid: c2483dde31888154598a66c05c3ccae8, type: 3}
+    - {fileID: 8300000, guid: 433c6f19125a163489de54aec5f3c542, type: 3}
+    - {fileID: 8300000, guid: 16712d6f852bfb347874c945a4a1bdec, type: 3}
+    - {fileID: 8300000, guid: 461a68138e3e2714c8d76b2bb9fe76dd, type: 3}
