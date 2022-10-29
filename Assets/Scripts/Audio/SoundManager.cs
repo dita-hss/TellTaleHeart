@@ -128,6 +128,8 @@ public class SoundManager : MonoBehaviour
 
 					curSource.minDistance = audioData.minDist;
 					curSource.maxDistance = audioData.maxDist;
+					curSource.rolloffMode = AudioRolloffMode.Logarithmic;
+					curSource.spatialBlend = 1;
 
 					
 					

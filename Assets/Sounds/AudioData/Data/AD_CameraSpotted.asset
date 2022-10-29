@@ -17,4 +17,4 @@ MonoBehaviour:
   volume: 0.5
   pitch: 1
   minDist: 1
-  maxDist: 10
+  maxDist: 7
