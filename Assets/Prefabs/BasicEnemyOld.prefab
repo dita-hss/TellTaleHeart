@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 679528546390148370}
   - component: {fileID: 679528546390148369}
   - component: {fileID: 679528546390148368}
-  - component: {fileID: 679528546390148371}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &679528546390148371
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679528546390148373}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &679528546905569350
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +101,7 @@ GameObject:
   - component: {fileID: 679528546905569345}
   - component: {fileID: 679528546905569372}
   - component: {fileID: 679528546905569374}
+  - component: {fileID: 1653934266}
   m_Layer: 0
   m_Name: BasicEnemyOld
   m_TagString: Untagged
@@ -217,7 +204,7 @@ MonoBehaviour:
   onSeeTarget:
     m_PersistentCalls:
       m_Calls: []
-  viewRange: 15
+  viewRange: 8
   viewAngle: 60
   hitLayerMask:
     serializedVersion: 2
@@ -255,6 +242,12 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &679528546905569345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +263,11 @@ MonoBehaviour:
   timeBeforeAbandonSound: 2
   attackStartTime: 0.5
   postAttackTime: 0.25
+  checkSeeTargetTime: 1.5
+  timeBeforeAbandonTarget: 2
+  _attackMoveSpeed: 4
+  _patrolMoveSpeed: 2
+  _onSeePlayer: {fileID: 11400000, guid: 90c6b8196e843b44b8957625af1fe4a3, type: 2}
 --- !u!114 &679528546905569372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11e7fea1830384b829e5d2e5f704d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 3
-  damage: 2
+  _attackRange: 1.5
+  damage: 1000
 --- !u!195 &679528546905569374
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -294,11 +292,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2.5
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -306,3 +304,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
+--- !u!114 &1653934266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679528546905569350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d829eb0c6ab87644907a8beff48a852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundToPlay: {fileID: 11400000, guid: a52a8bd796e4e414c80a217d05752370, type: 2}
+  timeBetweenSound: 3
+  timeBetweenSoundOffset: 0.5

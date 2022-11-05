@@ -8,6 +8,7 @@ public class AudioDataSO : ScriptableObject
 {
     public AudioCueSO clipData;
     public bool is3D;
+    public bool isLooping; 
 
     [Range(0, 1)]
     public float volume = 1.0f;

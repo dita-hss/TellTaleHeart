@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AD_CameraBeep
   m_EditorClassIdentifier: 
   clipData: {fileID: 11400000, guid: 04d0535653adffe4b84bde94656ab580, type: 2}
-  is3D: 0
+  is3D: 1
   volume: 0.5
   pitch: 1
   minDist: 1

@@ -6,6 +6,7 @@ public class FootstepSounds : MonoBehaviour
 {
     [SerializeField] private AudioDataSO footstepSounds;
     [SerializeField] private float meterPerFootstep = 1.5f;
+    [SerializeField] private SoundEmitter footstepEmitter;
 
     private Vector3 lastPos;
     private float curDistBuild = 0; 
@@ -26,6 +27,7 @@ public class FootstepSounds : MonoBehaviour
         if (curDistBuild > meterPerFootstep) {
             curDistBuild -= meterPerFootstep;
             SoundManager.Audio?.PlaySFXSound(footstepSounds, Vector3.zero, transform);
+            footstepEmitter?.EmitSound();
         }
 
         lastPos = transform.position;

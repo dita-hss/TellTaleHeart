@@ -222,7 +222,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   targets: []
-  checkForTargetTime: 0.3
+  checkForTargetTime: 0.2
 --- !u!114 &5110127888187993598
 MonoBehaviour:
   m_ObjectHideFlags: 0

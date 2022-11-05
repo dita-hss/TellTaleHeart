@@ -17,7 +17,16 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] private float attackStartTime = 0.5f;
     [SerializeField] private float postAttackTime = 0.25f;
     [SerializeField] private float checkSeeTargetTime = 1.5f;
+    [SerializeField] private float baseSeeTargetRange = 10.0f; 
     [SerializeField] private float timeBeforeAbandonTarget = 5.0f;
+
+    [Header("Movement")]
+    [SerializeField] private float _attackMoveSpeed;
+    [SerializeField] private float _patrolMoveSpeed;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSO _onSeePlayer;
 
     private float _lastTimeSeenTarget = 0.0f;
 
@@ -28,7 +37,8 @@ public class BasicEnemyAI : MonoBehaviour
     private Eyes eyes;
     private SoundListener ears;
     private Patrol patrol;
-    private Attack attack; 
+    private Attack attack;
+    private NavMeshAgent navMeshAgent;
 
 
 
@@ -38,7 +48,9 @@ public class BasicEnemyAI : MonoBehaviour
         ears = GetComponent<SoundListener>();
         patrol = GetComponent<Patrol>();
         attack = GetComponent<Attack>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
 
+        navMeshAgent.speed = _patrolMoveSpeed;
 
         eyes.AddTarget(GameObject.FindGameObjectWithTag("Player"));
     }
@@ -65,7 +77,8 @@ public class BasicEnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _lastTimeSeenTarget += Time.deltaTime;
+
         if (curState.Equals(States.PATROL))
         {
             patrol.PatrolStep();
@@ -89,7 +102,7 @@ public class BasicEnemyAI : MonoBehaviour
             }
             else
             {
-                _lastTimeSeenTarget += Time.deltaTime;
+                
                 if (_lastTimeSeenTarget > timeBeforeAbandonTarget)
                 {
                     print("abandoning target");
@@ -144,7 +157,7 @@ public class BasicEnemyAI : MonoBehaviour
     // Wait a second before going full attack mode
     IEnumerator WaitBeforeAttackTarget(GameObject newTarget)
     {
-        yield return new WaitForSeconds(checkSeeTargetTime);
+        yield return new WaitForSeconds(checkSeeTargetTime * (Vector3.Distance(newTarget.transform.position, transform.position)/baseSeeTargetRange));
         if (eyes.GetSeenTargets().Contains(newTarget))
         {
             StartAttackTarget(newTarget);
@@ -159,6 +172,15 @@ public class BasicEnemyAI : MonoBehaviour
         curState = States.ATTACK_TARGET;
         curTarget = newTarget;
         patrol.OverrideDestination(newTarget.transform.position);
+
+        navMeshAgent.speed = _attackMoveSpeed;
+
+        if (_lastTimeSeenTarget > 2.0f)
+        {
+            SoundManager.Audio?.PlaySFXSound(_onSeePlayer, transform.position);
+        }
+
+
         _lastTimeSeenTarget = 0.0f; 
     }
 
@@ -178,6 +200,7 @@ public class BasicEnemyAI : MonoBehaviour
     {
         if (curState != States.ATTACK_TARGET)
         {
+            navMeshAgent.speed = _patrolMoveSpeed;
             curState = States.PATROL;
         }
     }

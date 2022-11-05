@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
 	private Queue<AudioSource> availableSources = new Queue<AudioSource>();
 	private HashSet<AudioSource> currentlyPlaying = new HashSet<AudioSource>();
 
+	[SerializeField] private AudioDataSO[] loopingSounds;
+
 
 
 	/*[Header("Audio control")]
@@ -67,6 +69,14 @@ public class SoundManager : MonoBehaviour
 
 	}
 
+	private void Start()
+	{
+		foreach (AudioDataSO data in loopingSounds)
+		{
+			Audio?.PlaySFXSound(data, Vector3.zero);
+		}
+	}
+
 
 
 	private void Update()
@@ -94,6 +104,7 @@ public class SoundManager : MonoBehaviour
 	{
 
 		soundSourceHolder = new GameObject("Sound Source Holder");
+		soundSourceHolder.transform.position = Vector3.zero;
 		_pool = new AudioSource[_initialSize];
 		for (int i = 0; i < _initialSize; i++)
 		{
@@ -117,20 +128,30 @@ public class SoundManager : MonoBehaviour
 			int nOfClips = clipsToPlay.Length;
 			for (int i = 0; i < nOfClips; i++)
 			{
+
 				var curSource = GetAvailableSource();
 				if (curSource != null)
 				{
+					
 					curSource.clip = clipsToPlay[i];
 
 					curSource.volume = audioData.volume;
 					curSource.pitch = audioData.pitch;
 
 
-					curSource.minDistance = audioData.minDist;
-					curSource.maxDistance = audioData.maxDist;
-					curSource.rolloffMode = AudioRolloffMode.Logarithmic;
-					curSource.spatialBlend = 1;
+					if (audioData.is3D)
+					{
+						curSource.spatialBlend = 1;
+						curSource.minDistance = audioData.minDist;
+						curSource.maxDistance = audioData.maxDist;
+						curSource.rolloffMode = AudioRolloffMode.Linear;
+					}
+					else
+					{
+						curSource.spatialBlend = 0; 
+					}
 
+					curSource.loop = audioData.isLooping;
 					
 					
 
@@ -139,8 +160,9 @@ public class SoundManager : MonoBehaviour
 
 					if (parentTransform != null)
 					{
-						curSource.transform.parent = parentTransform;
 						curSource.transform.position = Vector3.zero;
+						curSource.transform.parent = parentTransform;
+						curSource.transform.localPosition = Vector3.zero;
 					}
 
 					curSource.Play();
@@ -172,6 +194,8 @@ public class SoundManager : MonoBehaviour
 		reset.loop = false;
 		reset.minDistance = 1.0f;
 		reset.maxDistance = 500.0f;
+		reset.spatialBlend = 1.0f; 
+		
 
 		reset.transform.parent = soundSourceHolder.transform;
 		reset.transform.position = Vector3.zero; 
