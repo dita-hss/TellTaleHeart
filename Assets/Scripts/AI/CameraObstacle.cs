@@ -18,6 +18,8 @@ public class CameraObstacle : MonoBehaviour
     private SoundEmitter alarmEmitter; 
     private GameObject curSeen;
 
+    private PeriodicSound beepSound;
+
 
     private float timeSinceLastSeen = 0.0f;
     private bool alarmPlaying = false; 
@@ -27,6 +29,8 @@ public class CameraObstacle : MonoBehaviour
         alarmEmitter = gameObject.GetComponent<SoundEmitter>();
         cameraVision = gameObject.GetComponent<Eyes>();
         cameraVision.onSeeTarget.AddListener(OnSeenTarget);
+
+        beepSound = GetComponent<PeriodicSound>();
     }
 
     /*private void OnValidate()
@@ -53,7 +57,8 @@ public class CameraObstacle : MonoBehaviour
             if (!alarmPlaying)
             {
                 print("start alarm");
-                alarmPlaying = true; 
+                alarmPlaying = true;
+                beepSound?.Disable();
                 StartCoroutine(RepeatedAlarm());
             }
         }
@@ -63,7 +68,7 @@ public class CameraObstacle : MonoBehaviour
     private void PlaySingleAlarm()
     {
         alarmEmitter.EmitSound();
-        SoundManager.Audio?.PlaySFXSound(onSeePlayer, Vector3.zero, transform);
+        SoundManager.Audio?.PlaySFXSound(onSeePlayer, transform.position, null);
         print("Sound played");
     }
 
@@ -77,9 +82,10 @@ public class CameraObstacle : MonoBehaviour
         }
         alarmPlaying = false; 
         curSeen = null;
+
+        beepSound?.Enable(); 
         yield return null; 
     }
-
 
     private bool VisionSeesTarget()
     {

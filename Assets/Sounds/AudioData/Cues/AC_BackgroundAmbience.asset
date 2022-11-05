@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccc54958780b98c479e46f45d42937bb, type: 3}
-  m_Name: AD_CameraSpotted
+  m_Script: {fileID: 11500000, guid: 5d36959ca5eab0b4fafa827af6ab1834, type: 3}
+  m_Name: AC_BackgroundAmbience
   m_EditorClassIdentifier: 
-  clipData: {fileID: 11400000, guid: 32bd8cf48014dd5469a1b8dc855cf967, type: 2}
-  is3D: 1
-  volume: 0.5
-  pitch: 1
-  minDist: 1
-  maxDist: 15
+  looping: 0
+  _audioClipGroups:
+  - sequenceMode: 0
+    audioClips:
+    - {fileID: 8300000, guid: 2acb72a15d3476d4e8371a8a3a258669, type: 3}

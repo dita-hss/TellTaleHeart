@@ -24,6 +24,11 @@ namespace KeySystem
         [SerializeField] private int waitTimer = 1;
         [SerializeField] private bool pauseInteraction = false;
 
+
+        [Header("Audio")]
+        [SerializeField] private AudioDataSO _doorLocked;
+        [SerializeField] private AudioDataSO _doorOpen;
+
         private KeyInventory _keyInventory = null;
 
         public void Interact(KeyInventory inv)
@@ -57,21 +62,30 @@ namespace KeySystem
                 
                 if (!doorOpen && !pauseInteraction)
                 {
-                    doorAnim.Play(openAnimationName, 0, 0.0f);
+                    //doorAnim.Play(openAnimationName, 0, 0.0f);
                     doorOpen = true;
-                    StartCoroutine(PauseDoorInteraction());
+                    OpenDoor();
+                    //StartCoroutine(PauseDoorInteraction());
                 }
-                else if(doorOpen && !pauseInteraction)
+                /*else if(doorOpen && !pauseInteraction)
                 {
                     doorAnim.Play(closeAnimationName, 0, 0.0f);
                     doorOpen = false;
                     StartCoroutine(PauseDoorInteraction());
-                }
+                }*/
             }
             else
             {
+                SoundManager.Audio?.PlaySFXSound(_doorLocked, transform.position);
                 StartCoroutine(ShowDoorLocked());
             }
+        }
+
+        public void OpenDoor()
+        {
+            SoundManager.Audio?.PlaySFXSound(_doorOpen, transform.position);
+            Destroy(gameObject);
+
         }
 
         IEnumerator ShowDoorLocked()
