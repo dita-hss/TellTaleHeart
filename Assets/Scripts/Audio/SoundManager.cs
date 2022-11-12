@@ -60,7 +60,7 @@ public class SoundManager : MonoBehaviour
 		{
 			Audio = this;
 			InitAudioSources();
-			DontDestroyOnLoad(gameObject);
+			//DontDestroyOnLoad(gameObject);
 
 			SceneManager.sceneLoaded += InitOnLoad;
 
@@ -81,6 +81,11 @@ public class SoundManager : MonoBehaviour
 	private void OnDestroy()
 	{
 		SceneManager.sceneLoaded -= InitOnLoad;
+
+		if (Audio == this)
+		{
+			Audio = null;
+		}
 	}
 
 	private void Start()

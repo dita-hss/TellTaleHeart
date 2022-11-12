@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5393215578589016640}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,10 @@ GameObject:
   - component: {fileID: 5961517963276770540}
   - component: {fileID: 6807285645494984619}
   - component: {fileID: 6142998382019320763}
+  - component: {fileID: 1287426620}
+  - component: {fileID: 1287426621}
+  - component: {fileID: 1287426630}
+  - component: {fileID: 1287426639}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -200,11 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
-  SprintSpeed: 6
-  RotationSpeed: 1
-  SpeedChangeRate: 10
-  JumpHeight: 1.2
+  MoveSpeed: 2.5
+  SprintSpeed: 3
+  RotationSpeed: 0.9
+  SpeedChangeRate: 3
+  JumpHeight: 0
   Gravity: -15
   JumpTimeout: 0.1
   FallTimeout: 0.15
@@ -359,7 +363,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce4a82096fc334e488526e3f9571d1e3, type: 3}
   m_Name: 
@@ -380,8 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c919b6a4614ec44b23b4314ea83370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
+  maxHealth: 1
+  health: 1
   E_Damage:
     m_PersistentCalls:
       m_Calls: []
@@ -403,18 +407,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LoseStateLogic, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6142998382019320763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,3 +419,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c44306dc0c50545bdc9af05e99615f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1287426620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee0ff551326e44e2a2eec94524ce8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayLength: 3
+  layerMaskInteract:
+    serializedVersion: 2
+    m_Bits: 8
+  excluseLayerName: 
+  openDoorKey: 323
+  crosshair: {fileID: 0}
+  _keyInventory: {fileID: 1287426621}
+--- !u!114 &1287426621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0211de22f7aaa4a82a650f8d18736fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1287426630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba6bfb93540096429e46ad914b5b37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSounds: {fileID: 11400000, guid: 72595e49b7862774697f4f9e335a45cd, type: 2}
+  meterPerFootstep: 1.5
+  footstepEmitter: {fileID: 1287426639}
+--- !u!114 &1287426639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a440f32cbd6f59644a58ed4e6561892d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3

@@ -21361,66 +21361,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3721980921205186715}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1287426620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee0ff551326e44e2a2eec94524ce8dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayLength: 3
-  layerMaskInteract:
-    serializedVersion: 2
-    m_Bits: 8
-  excluseLayerName: 
-  openDoorKey: 323
-  crosshair: {fileID: 6604039802012301470}
-  _keyInventory: {fileID: 1287426621}
---- !u!114 &1287426621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0211de22f7aaa4a82a650f8d18736fe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1287426630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba6bfb93540096429e46ad914b5b37b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepSounds: {fileID: 11400000, guid: 72595e49b7862774697f4f9e335a45cd, type: 2}
-  meterPerFootstep: 1.5
-  footstepEmitter: {fileID: 1287426639}
---- !u!114 &1287426639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a440f32cbd6f59644a58ed4e6561892d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 3
 --- !u!43 &1293351996
 Mesh:
   m_ObjectHideFlags: 0
@@ -25400,7 +25340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30194
+  m_Name: pb_Mesh53642
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39692,85 +39632,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5393215578589016655, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 1287426620, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: crosshair
       value: 
-      objectReference: {fileID: 2100000, guid: 6b911390c5825014e8377183a7837d3f, type: 2}
-    - target: {fileID: 5961517963276770540, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+      objectReference: {fileID: 6604039802012301470}
+    - target: {fileID: 5393215578589016655, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: E_Die.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
       propertyPath: E_Die.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2128847180928761825}
-    - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: E_Die.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoseGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: MoveSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: JumpHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: SprintSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: RotationSpeed
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: SpeedChangeRate
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
