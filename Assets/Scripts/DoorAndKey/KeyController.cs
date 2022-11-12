@@ -10,10 +10,11 @@ namespace KeySystem
     {
         [SerializeField] private string keyId = "redKey";
         [SerializeField] private AudioDataSO _onKeyPickupSound;
+        [SerializeField] private Color keyColor; 
 
         public void Interact(KeyInventory inv)
         {
-            inv.AddKey(keyId);
+            inv.AddKey(keyId, keyColor);
             gameObject.SetActive(false);
 
             

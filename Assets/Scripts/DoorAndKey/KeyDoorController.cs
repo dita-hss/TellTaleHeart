@@ -62,6 +62,7 @@ namespace KeySystem
                 
                 if (!doorOpen && !pauseInteraction)
                 {
+                    _keyInventory.RemoveKey(keyId);
                     //doorAnim.Play(openAnimationName, 0, 0.0f);
                     doorOpen = true;
                     OpenDoor();

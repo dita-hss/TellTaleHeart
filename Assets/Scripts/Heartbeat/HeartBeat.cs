@@ -8,11 +8,12 @@ using UnityEngine.Events;
 public class HeartBeat : MonoBehaviour{
 
     //heart beating rate in 0-1 scale
-    public double HeartRate = 0.1;//heartRate = beat/seconds = 1/hearbeatInterval
+    public double defaultHeartRate = 1.5; 
+    public double HeartRate = 1.5;//heartRate = beat/seconds = 1/hearbeatInterval
     public double HeartIncreaseRate = 1.2;
     public double LifeSpan = 60;
     public UnityEvent<double> UpdateLife;
-    public UnityEvent Beating;
+    public UnityEvent Beating = new UnityEvent();
     public UnityEvent GameEnds;
     public SoundEmitter _emmiter;
     private Stopwatch stopwatch;
@@ -26,10 +27,6 @@ public class HeartBeat : MonoBehaviour{
     //Reference to UI
     //Unity Event
 
-    void Start(){
-        Awake();
-    }
-
     void Update()
     {
         if (Awaken){
@@ -37,10 +34,10 @@ public class HeartBeat : MonoBehaviour{
 
             //Heart makes a beat
             if (ElapsedTime - LastBeatTime > 1.0/HeartRate){
-                BeatFaster(HeartIncreaseRate);
+                //BeatFaster(HeartIncreaseRate);
                 Beating.Invoke();
                 LastBeatTime = ElapsedTime;
-                _emmiter.EmitSound();
+                _emmiter?.EmitSound();
             }
 
             if (Relaxing){
@@ -48,11 +45,11 @@ public class HeartBeat : MonoBehaviour{
             }
 
             //Ran out of time
-            if (ElapsedTime > LifeSpan){
+            /*if (ElapsedTime > LifeSpan){
                 LifeEnds();
                 return;
             }
-            UpdateLife.Invoke(LifeSpan - ElapsedTime);
+            UpdateLife.Invoke(LifeSpan - ElapsedTime);*/
         }
 
     }
@@ -68,9 +65,9 @@ public class HeartBeat : MonoBehaviour{
     void BeatFaster(double ratio)
     {
         HeartRate = HeartRate*ratio;
-        if(HeartRate > 1.0){
+        /*if(HeartRate > 1.0){
             LifeEnds();
-        }
+        }*/
 
     }
 

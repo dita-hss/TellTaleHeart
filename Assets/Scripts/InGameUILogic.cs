@@ -9,6 +9,8 @@ public class InGameUILogic : MonoBehaviour
 
     public GameObject pauseUI;
 
+    public GameObject inGameUI; 
+
     private bool _paused = false;
 
 
@@ -16,6 +18,8 @@ public class InGameUILogic : MonoBehaviour
     {
         _paused = true;
         Cursor.lockState = CursorLockMode.None;
+
+        inGameUI.SetActive(false);
         
         pauseUI?.SetActive(true);
         Time.timeScale = 0;
@@ -23,6 +27,8 @@ public class InGameUILogic : MonoBehaviour
 
     public void OnUnpause()
     {
+
+        inGameUI.SetActive(true);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         _paused = false; 
@@ -52,10 +58,12 @@ public class InGameUILogic : MonoBehaviour
 
     public void ShowLoseUI()
     {
+        inGameUI.SetActive(false);
         loseUI.SetActive(true);
     }
     public void HideLoseUI()
     {
+        inGameUI.SetActive(true);
         loseUI.SetActive(false);
     }
 
