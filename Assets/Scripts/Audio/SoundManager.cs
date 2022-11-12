@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Modified from https://www.daggerhartlab.com/unity-audio-and-sound-manager-singleton-script/
 public class SoundManager : MonoBehaviour
@@ -61,12 +62,25 @@ public class SoundManager : MonoBehaviour
 			InitAudioSources();
 			DontDestroyOnLoad(gameObject);
 
+			SceneManager.sceneLoaded += InitOnLoad;
+
 		}
 		else if (Audio != this)
 		{
 			Destroy(this);
 		}
 
+
+	}
+
+	public void InitOnLoad(Scene scene, LoadSceneMode mode)
+	{
+		InitAudioSources();
+	}
+
+	private void OnDestroy()
+	{
+		SceneManager.sceneLoaded -= InitOnLoad;
 	}
 
 	private void Start()
@@ -76,7 +90,6 @@ public class SoundManager : MonoBehaviour
 			Audio?.PlaySFXSound(data, Vector3.zero);
 		}
 	}
-
 
 
 	private void Update()

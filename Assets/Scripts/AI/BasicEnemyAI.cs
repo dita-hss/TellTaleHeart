@@ -131,7 +131,10 @@ public class BasicEnemyAI : MonoBehaviour
     IEnumerator WaitOnHear()
     {
         yield return new WaitForSeconds(timeBeforeAbandonSound);
-        StartPatrol();
+        if (curState != States.ATTACK_TARGET)
+        {
+            StartPatrol();
+        }
         yield return null; 
     }
 
@@ -198,11 +201,10 @@ public class BasicEnemyAI : MonoBehaviour
 
     private void StartPatrol()
     {
-        if (curState != States.ATTACK_TARGET)
-        {
-            navMeshAgent.speed = _patrolMoveSpeed;
-            curState = States.PATROL;
-        }
+
+        navMeshAgent.speed = _patrolMoveSpeed;
+        curState = States.PATROL;
+        
     }
 
 

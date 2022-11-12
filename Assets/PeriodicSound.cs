@@ -22,7 +22,7 @@ public class PeriodicSound : MonoBehaviour
         if (_timeBeforeNextSound <= 0)
         {
             _timeBeforeNextSound += timeBetweenSound + Random.Range(-timeBetweenSoundOffset, timeBetweenSoundOffset);
-            SoundManager.Audio.PlaySFXSound(soundToPlay, Vector3.zero, transform);
+            SoundManager.Audio?.PlaySFXSound(soundToPlay, Vector3.zero, transform);
         }
     }
 
