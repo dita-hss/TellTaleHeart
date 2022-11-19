@@ -51,6 +51,17 @@ public class SoundManager : MonoBehaviour
 		return EffectsSource[0];
 	}*/
 
+	private void OnLevelWasLoaded(int level)
+	{
+		if (level == 4)
+		{
+			foreach (AudioDataSO data in loopingSounds)
+			{
+				Audio?.PlaySFXSound(data, Vector3.zero);
+			}
+		}
+	}
+
 
 
 	private void Awake()
@@ -90,10 +101,7 @@ public class SoundManager : MonoBehaviour
 
 	private void Start()
 	{
-		foreach (AudioDataSO data in loopingSounds)
-		{
-			Audio?.PlaySFXSound(data, Vector3.zero);
-		}
+		
 	}
 
 

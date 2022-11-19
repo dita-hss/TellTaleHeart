@@ -18,8 +18,8 @@ public class MenuButtonLogic : MonoBehaviour, IPointerEnterHandler
         if (hoverBackground != null)
         {
             hoverBackground.transform.position = transform.position;
-            SoundManager.Audio?.PlaySFXSound(_buttonHoverSound, Vector3.zero);
         }
+        SoundManager.Audio?.PlaySFXSound(_buttonHoverSound, Vector3.zero);
     }
 
     // Start is called before the first frame update
