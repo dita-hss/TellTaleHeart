@@ -80,7 +80,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5393215578589016642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -150,6 +150,8 @@ GameObject:
   - component: {fileID: 1287426621}
   - component: {fileID: 1287426630}
   - component: {fileID: 1287426639}
+  - component: {fileID: 1287426649}
+  - component: {fileID: 1287426650}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -451,6 +453,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0211de22f7aaa4a82a650f8d18736fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  keyRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1287426630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,3 +487,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+--- !u!114 &1287426649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864eda32457a39c4594ca5a352b037b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHeartRate: 1
+  HeartRate: 1
+  HeartIncreaseRate: 1.2
+  LifeSpan: 60
+  UpdateLife:
+    m_PersistentCalls:
+      m_Calls: []
+  Beating:
+    m_PersistentCalls:
+      m_Calls: []
+  GameEnds:
+    m_PersistentCalls:
+      m_Calls: []
+  _emmiter: {fileID: 0}
+--- !u!114 &1287426650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2fdb7b6f344c44ab3b75ce1c03f3e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDist: 5
+  maxDist: 30
+  needsLOS: 0
+  checkTime: 0.5

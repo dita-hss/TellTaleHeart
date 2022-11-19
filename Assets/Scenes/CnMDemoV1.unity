@@ -19548,6 +19548,9 @@ MonoBehaviour:
   pauseInteraction: 0
   _doorLocked: {fileID: 11400000, guid: 5922b2261b9924a488afd7eeb312616e, type: 2}
   _doorOpen: {fileID: 11400000, guid: 04fae763326f2ab40a1d7de2eb9d8672, type: 2}
+  E_OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1200650770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21363,48 +21366,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3721980921205186715}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1287426649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864eda32457a39c4594ca5a352b037b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultHeartRate: 1
-  HeartRate: 1
-  HeartIncreaseRate: 1.2
-  LifeSpan: 60
-  UpdateLife:
-    m_PersistentCalls:
-      m_Calls: []
-  Beating:
-    m_PersistentCalls:
-      m_Calls: []
-  GameEnds:
-    m_PersistentCalls:
-      m_Calls: []
-  _emmiter: {fileID: 0}
---- !u!114 &1287426650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287426613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2fdb7b6f344c44ab3b75ce1c03f3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDist: 5
-  maxDist: 30
-  needsLOS: 0
-  checkTime: 0.5
 --- !u!43 &1293351996
 Mesh:
   m_ObjectHideFlags: 0
@@ -30783,6 +30744,9 @@ MonoBehaviour:
   pauseInteraction: 0
   _doorLocked: {fileID: 11400000, guid: 5922b2261b9924a488afd7eeb312616e, type: 2}
   _doorOpen: {fileID: 11400000, guid: 04fae763326f2ab40a1d7de2eb9d8672, type: 2}
+  E_OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1730810256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39680,11 +39644,6 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 6604039802012301470}
-    - target: {fileID: 5393215578589016655, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6807285645494984619, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: E_Die.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -40087,6 +40046,9 @@ MonoBehaviour:
   pauseInteraction: 0
   _doorLocked: {fileID: 11400000, guid: 5922b2261b9924a488afd7eeb312616e, type: 2}
   _doorOpen: {fileID: 11400000, guid: 04fae763326f2ab40a1d7de2eb9d8672, type: 2}
+  E_OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &8766256286218207274
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@ public class InteractableRaycast : MonoBehaviour
                 if (!doOnce)
                 {
                     rayCastedObject = hit.collider.gameObject.GetComponent<Interactable>();
+                    if (rayCastedObject == null) { rayCastedObject = hit.collider.gameObject.transform.parent.gameObject.GetComponent<Interactable>(); }
                     CrosshairChange(true);
                 }
 
@@ -57,7 +58,7 @@ public class InteractableRaycast : MonoBehaviour
 
                 if (Input.GetKeyDown(openDoorKey))
                 {
-                    rayCastedObject.Interact(_keyInventory);
+                    rayCastedObject?.Interact(_keyInventory);
                 }
 
             }
