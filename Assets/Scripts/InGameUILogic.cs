@@ -9,7 +9,11 @@ public class InGameUILogic : MonoBehaviour
 
     public GameObject pauseUI;
 
-    public GameObject inGameUI; 
+    public GameObject inGameUI;
+
+    public GameObject winUI;
+
+    public GameObject tutorialUI; 
 
     private bool _paused = false;
 
@@ -53,7 +57,27 @@ public class InGameUILogic : MonoBehaviour
     }
 
 
+    public void ShowTutUI()
+    {
+        inGameUI.SetActive(false);
+        tutorialUI.SetActive(true);
+    }
+    public void HideTutUI()
+    {
+        inGameUI.SetActive(true);
+        tutorialUI.SetActive(false);
+    }
 
+    public void ShowWinUI()
+    {
+        inGameUI.SetActive(false);
+        winUI.SetActive(true);
+    }
+    public void HideWinUI()
+    {
+        inGameUI.SetActive(true);
+        winUI.SetActive(false);
+    }
 
 
     public void ShowLoseUI()

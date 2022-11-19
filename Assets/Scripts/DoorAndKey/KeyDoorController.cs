@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace KeySystem
@@ -30,6 +31,8 @@ namespace KeySystem
         [SerializeField] private AudioDataSO _doorOpen;
 
         private KeyInventory _keyInventory = null;
+
+        public UnityEvent E_OnOpen = new UnityEvent();
 
         public void Interact(KeyInventory inv)
         {
@@ -62,10 +65,11 @@ namespace KeySystem
                 
                 if (!doorOpen && !pauseInteraction)
                 {
-                    _keyInventory.RemoveKey(keyId);
+                    //_keyInventory.RemoveKey(keyId);
                     //doorAnim.Play(openAnimationName, 0, 0.0f);
                     doorOpen = true;
                     OpenDoor();
+                    E_OnOpen.Invoke();
                     //StartCoroutine(PauseDoorInteraction());
                 }
                 /*else if(doorOpen && !pauseInteraction)
