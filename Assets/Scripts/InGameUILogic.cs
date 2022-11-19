@@ -18,6 +18,11 @@ public class InGameUILogic : MonoBehaviour
     private bool _paused = false;
 
 
+    private void Start()
+    {
+        ShowTutUI();
+    }
+
     public void OnPause()
     {
         _paused = true;
@@ -32,8 +37,9 @@ public class InGameUILogic : MonoBehaviour
     public void OnUnpause()
     {
 
-        inGameUI.SetActive(true);
         Time.timeScale = 1;
+        inGameUI.SetActive(true);
+        HideTutUI();
         Cursor.lockState = CursorLockMode.Locked;
         _paused = false; 
         pauseUI?.SetActive(false);
@@ -59,18 +65,26 @@ public class InGameUILogic : MonoBehaviour
 
     public void ShowTutUI()
     {
-        inGameUI.SetActive(false);
-        tutorialUI.SetActive(true);
+        inGameUI?.SetActive(false);
+        tutorialUI?.SetActive(true);
+
+        _paused = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        Time.timeScale = 0;
     }
     public void HideTutUI()
     {
-        inGameUI.SetActive(true);
-        tutorialUI.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        _paused = false;
+        inGameUI?.SetActive(true);
+        tutorialUI?.SetActive(false);
     }
 
     public void ShowWinUI()
     {
-        inGameUI.SetActive(false);
+        inGameUI?.SetActive(false);
         winUI.SetActive(true);
     }
     public void HideWinUI()
