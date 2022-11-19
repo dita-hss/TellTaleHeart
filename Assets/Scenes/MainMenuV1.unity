@@ -275,7 +275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 377, y: 177}
+  m_AnchoredPosition: {x: 260, y: -300}
   m_SizeDelta: {x: 540, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87548772
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19205c98f968ce5469eb88943c3cf04c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0a20e3fd0b94c44fa2210edf40fcfa4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -602,7 +602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 371.75, y: -95.25}
+  m_AnchoredPosition: {x: -400, y: -300}
   m_SizeDelta: {x: 540, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459459979
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 685d2ca2407636a419cfaf1762794443, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bae52b3e0c09ecb49aa0171c071690c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1099,7 +1099,7 @@ RectTransform:
   m_GameObject: {fileID: 865700312}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1516148910}
@@ -1107,8 +1107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450, y: -17}
-  m_SizeDelta: {x: 970, y: 1024}
+  m_AnchoredPosition: {x: -175, y: 50}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865700314
 MonoBehaviour:
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   fadeToWhite: {fileID: 1914930275}
   fadeToWhiteTime: 6
   isWhiteTime: 3
-  gotoScene: CnMDemoV1
+  gotoScene: MainLevel
 --- !u!114 &1516148914
 MonoBehaviour:
   m_ObjectHideFlags: 0
