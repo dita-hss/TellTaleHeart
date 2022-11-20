@@ -15,17 +15,22 @@ public class InGameUILogic : MonoBehaviour
 
     public GameObject tutorialUI; 
 
-    private bool _paused = false;
+    public static bool Paused { get; private set; } = false;
+
+    public AudioDataSO onWinPlay;
 
 
     private void Start()
     {
+        Paused = false; 
         ShowTutUI();
     }
 
+
+
     public void OnPause()
     {
-        _paused = true;
+        Paused = true;
         Cursor.lockState = CursorLockMode.None;
 
         inGameUI.SetActive(false);
@@ -41,14 +46,14 @@ public class InGameUILogic : MonoBehaviour
         inGameUI.SetActive(true);
         HideTutUI();
         Cursor.lockState = CursorLockMode.Locked;
-        _paused = false; 
+        Paused = false; 
         pauseUI?.SetActive(false);
     }
 
 
     public void TogglePause()
     {
-        if (_paused)
+        if (Paused)
         {
             OnUnpause();
         } else
@@ -68,7 +73,7 @@ public class InGameUILogic : MonoBehaviour
         inGameUI?.SetActive(false);
         tutorialUI?.SetActive(true);
 
-        _paused = true;
+        Paused = true;
         Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0;
@@ -77,18 +82,27 @@ public class InGameUILogic : MonoBehaviour
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        _paused = false;
+        Paused = false;
         inGameUI?.SetActive(true);
         tutorialUI?.SetActive(false);
     }
 
     public void ShowWinUI()
     {
+        Paused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+
+        SoundManager.Audio?.PlaySFXSound(onWinPlay, Vector3.zero);
+
         inGameUI?.SetActive(false);
         winUI.SetActive(true);
     }
     public void HideWinUI()
     {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Paused = false;
         inGameUI.SetActive(true);
         winUI.SetActive(false);
     }
@@ -96,11 +110,17 @@ public class InGameUILogic : MonoBehaviour
 
     public void ShowLoseUI()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
         inGameUI.SetActive(false);
         loseUI.SetActive(true);
+        Paused = true;
     }
     public void HideLoseUI()
     {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Paused = false;
         inGameUI.SetActive(true);
         loseUI.SetActive(false);
     }

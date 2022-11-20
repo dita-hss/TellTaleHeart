@@ -70,7 +70,7 @@ public class UpdateHeartBeatWhenNearEnemy : MonoBehaviour
                 }
                 else if (minDist < maxDist)
                 {
-                    setHeartBeat.HeartRate = setHeartBeat.defaultHeartRate * ((1 + (maxHeartRateIncreaseMulti - 1)) * ((minEnemyDist - minDist) / (maxDist - minDist))); 
+                    setHeartBeat.HeartRate = setHeartBeat.defaultHeartRate * ((1 + (maxHeartRateIncreaseMulti - 1)) * (1 - ((minEnemyDist - minDist) / (maxDist - minDist)))); 
                 }
                 else
                 {

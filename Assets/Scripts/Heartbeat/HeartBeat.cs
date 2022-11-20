@@ -29,7 +29,7 @@ public class HeartBeat : MonoBehaviour{
 
     void Update()
     {
-        if (Awaken){
+        if (Awaken && !InGameUILogic.Paused){
             ElapsedTime = 0.001*(stopwatch.ElapsedMilliseconds - StartTime);
 
             //Heart makes a beat

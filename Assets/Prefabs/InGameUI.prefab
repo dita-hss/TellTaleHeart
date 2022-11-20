@@ -363,14 +363,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: be6547b843a773c47ae5bdc7a56749d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3f206e1022853042988f89cf6e38b19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1774229264370624806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1355,6 +1355,7 @@ MonoBehaviour:
   inGameUI: {fileID: 8969169379754358162}
   winUI: {fileID: 858455312}
   tutorialUI: {fileID: 4087110642656776393}
+  onWinPlay: {fileID: 11400000, guid: 6441400fbbdb37e4d8ec06ba3da290cf, type: 2}
 --- !u!114 &7495848506083707406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72ab70d2f4731da4c8ca5dd2f6f0e124, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fcdf5d16a1124d4daddc9141432c81b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
