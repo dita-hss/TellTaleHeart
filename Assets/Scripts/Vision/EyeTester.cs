@@ -10,7 +10,7 @@ public class EyeTester : MonoBehaviour
 
 
 
-
+/*
 // https://learn.unity.com/tutorial/editor-scripting#
 [CustomEditor(typeof(EyeTester))]
 public class EyeTesterEditor : Editor
@@ -25,4 +25,4 @@ public class EyeTesterEditor : Editor
             myTarget.toTest.CheckTargets();
         }
     }
-}
+}*/

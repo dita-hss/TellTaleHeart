@@ -16,7 +16,7 @@ public class SoundEmitterTester : MonoBehaviour
 
 }
 
-
+/*
 // https://learn.unity.com/tutorial/editor-scripting#
 [CustomEditor(typeof(SoundEmitterTester))]
 public class SoundEmitterTesterEditor : Editor
@@ -31,4 +31,4 @@ public class SoundEmitterTesterEditor : Editor
             myTarget.CallEmitter();
         }
     }
-}
+}*/
